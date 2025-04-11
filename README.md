@@ -16,7 +16,7 @@ Task Management: Create, view, update, complete, flag, categorize, and delete ta
 
 User Authentication: Secure login, signup, and logout functionalities.
 
-Background Task Reminders: Automatic email reminders triggered by Celery tasks.
+Background Task Reminders: Automatic email reminders triggered by Celery tasks. (emails currently disabled as app password is revoked, to test this create an app password with your google account and place it on projectTM/settings.py line 138 )
 
 Caching: Efficient caching of task lists for improved performance.
 
@@ -70,6 +70,10 @@ Username: admin
 Email: admin@example.com
 
 Password: Administrator1234
+
+**_Step 8: Auto Email Functionality (optional)_**
+
+Emails currently disabled as app password was revoked, to test this create an app password with your google account and place it on projectTM/settings.py line 138. You will also need to replace the email adress on line 137.
 
 ## **Technology Stack**
 
