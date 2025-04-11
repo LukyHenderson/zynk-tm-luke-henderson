@@ -135,7 +135,7 @@ EMAIL_HOST = 'smtp.gmail.com'  # gmail server
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'luky.henderson@gmail.com' # used my personal email address for simplicity
-EMAIL_HOST_PASSWORD = 'snlr icvv cokl ubty'  # Used app password instead of my google login for security
+EMAIL_HOST_PASSWORD = 'snlr icvv cokl ubty'  # Used app password instead of my google login, Currently revoked so email functionality is disabled.
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # django-redis caching functionality for perfomance
