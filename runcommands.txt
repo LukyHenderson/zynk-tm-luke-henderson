@@ -1,0 +1,20 @@
+docker for redis # run in pycharm terminal
+docker run -d --name redis -p 6379:6379 redis
+
+
+celery worker # ran in solo pool to avoid the windows celery prefork pool issue # run in pycharm terminal
+celery -A projectTM worker -l info --pool=solo
+
+
+python dev server # to run the webapp locally on localhost:8000 # run in pycharm terminal
+python manage.py runserver
+
+
+superuser # to check django admin
+Username: admin
+Email: admin@example.com
+Password: Administrator1234
+
+userlogin # to check webapp ui and functionality
+Username: User
+Password: Test12345

@@ -1,0 +1,110 @@
+{% extends 'appTM/base.html' %}
+
+{% block content %}
+<div class="flex justify-center items-start mt-16 bg-gray-100 min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
+        <h2 class="text-2xl font-bold text-center text-blue-600 mb-6">Create Account</h2>
+
+        {% if form.errors %}
+            <div class="bg-red-100 text-red-700 px-4 py-3 rounded mb-4 text-sm">
+                Invalid entry, please follow requirements.
+            </div>
+        {% endif %}
+
+        <form method="post" class="space-y-5">
+            {% csrf_token %}
+
+            <!-- Username Field -->
+            <div>
+                <label for="id_username"
+                       class="block text-sm font-medium text-gray-700 relative group cursor-help"
+                       data-tooltip-target="tooltip-username">
+                    Username
+                </label>
+                <input type="text" name="username" id="id_username"
+                       class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+
+            <!-- Username Tooltip -->
+            <div id="tooltip-username" role="tooltip"
+                 class="absolute z-10 invisible px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow opacity-0 transition-opacity duration-300">
+                150 characters or fewer. Letters, digits and @/./+/-/_ only.
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+
+            <!-- Email Field -->
+            <div>
+                <label for="id_email"
+                       class="block text-sm font-medium text-gray-700 relative group cursor-help"
+                       data-tooltip-target="tooltip-email">
+                    Email
+                </label>
+                <input type="email" name="email" id="id_email"
+                       class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+
+            <!-- Email Tooltip -->
+            <div id="tooltip-email" role="tooltip"
+                 class="absolute z-10 invisible px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow opacity-0 transition-opacity duration-300">
+                Enter a valid email address.
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+
+            <!-- Password Field -->
+            <div>
+                <label for="id_password1"
+                       class="block text-sm font-medium text-gray-700 relative group cursor-help"
+                       data-tooltip-target="tooltip-password1">
+                    Password
+                </label>
+                <input type="password" name="password1" id="id_password1"
+                       class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+
+            <!-- Password Tooltip -->
+            <div id="tooltip-password1" role="tooltip"
+                 class="absolute z-10 invisible px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow opacity-0 transition-opacity duration-300">
+                At least 8 characters. Avoid common passwords.
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div>
+                <label for="id_password2" class="block text-sm font-medium text-gray-700">
+                    Confirm Password
+                </label>
+                <input type="password" name="password2" id="id_password2"
+                       class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+
+            <!-- Submit -->
+            <button type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md font-medium">
+                Sign Up
+            </button>
+
+            <p class="mt-4 text-center text-sm text-gray-600">
+                Already have an account?
+                <a href="{% url 'login' %}" class="text-blue-500 hover:underline">Log in</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+<!-- Import of Popper.js used for hover tooltips -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script>
+    // This automatically connects labels with their tooltips
+    document.querySelectorAll('[data-tooltip-target]').forEach(el => {
+        const targetId = el.getAttribute('data-tooltip-target');
+        const tooltip = document.getElementById(targetId);
+
+        el.addEventListener('mouseenter', () => {
+            tooltip.classList.remove('invisible', 'opacity-0');
+        });
+        el.addEventListener('mouseleave', () => {
+            tooltip.classList.add('invisible', 'opacity-0');
+        });
+    });
+</script>
+{% endblock %}

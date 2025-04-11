@@ -1,0 +1,57 @@
+{% extends "appTM/base.html" %}
+{% block content %}
+
+<!-- Category dropdown to filter through tasks -->
+<form method="get" action="">
+    <label for="category">Filter by category:</label>
+    <select name="category" id="category" onchange="this.form.submit()">
+        <option value="" {% if not selected_category %}selected{% endif %}>All</option>
+        {% for cat in categories %}
+            <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
+        {% endfor %}
+    </select>
+</form>
+
+<!-- Task widget -->
+<div class="max-w-4xl mx-auto p-4 space-y-6">
+    {% for task in tasks %}
+        <div class="p-4 rounded shadow-md transition {% if task.flagged %}bg-red-100{% else %}bg-white{% endif %}">
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="text-lg font-semibold">
+                    {{ task.title }} <span class="text-sm text-gray-500 ml-2">{{ task.due_date|date:"d/m/Y H:i" }}</span>
+                </h3>
+                <div class="flex space-x-2">
+                    <!-- Mark as Complete -->
+                    <form method="post" action="{% url 'complete_task' task.id %}">
+                        {% csrf_token %}
+                        <button class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm">
+                            Complete
+                        </button>
+                    </form>
+
+                    <!-- Flag -->
+                    <form method="post" action="{% url 'task_flag' task.id %}">
+                        {% csrf_token %}
+                        <button class="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm">
+                            Flag
+                        </button>
+                    </form>
+
+                    <!-- Remove -->
+                    <form method="post" action="{% url 'task_delete' task.id %}">
+                        {% csrf_token %}
+                        <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">
+                            Remove
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <p class="text-sm text-gray-800 mb-1">{{ task.description }}</p>
+            <span class="text-xs text-gray-500">Category: {{ task.category }}</span>
+        </div>
+    {% empty %}
+        <p class="text-center text-gray-500">No tasks found.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
