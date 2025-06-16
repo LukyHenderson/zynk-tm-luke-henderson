@@ -123,7 +123,7 @@ Background tasks efficiently manage reminders and user notifications without int
 
 ## **License**
 
-MIT LICENSE © 2025
+This project is licensed under the [MIT License](./LICENSE).
 
 ## **Author**
 
